@@ -1,23 +1,22 @@
 package com.barbeariasystem.barbearia.entities;
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_clientes")
-public class Cliente {
-	
+@Table(name = "tb_proprietarios")
+public class Proprietario {
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String sobrenome;
@@ -25,20 +24,28 @@ public class Cliente {
 	private String senha;
 	private String telefone;
 	private LocalDate nascimento;
-	private List<Agendamento> agendamentos = new ArrayList<>();
+	@OneToOne
+	@JoinColumn(name = "barbearia_id")
+	private Barbearia barbearia;
+	private String cpf;
+	private String rg;
 	
-	public Cliente() {
+	public Proprietario() {
 		
 	}
 
-	public Cliente(String nome, String sobrenome, String email, String senha, String telefone,
-	LocalDate nascimento) {
+	public Proprietario(Long id, String nome, String sobrenome, String email, String senha, String telefone,
+	LocalDate nascimento, Barbearia barbearia, String cpf, String rg) {
+		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
 		this.senha = senha;
 		this.telefone = telefone;
 		this.nascimento = nascimento;
+		this.barbearia = barbearia;
+		this.cpf = cpf;
+		this.rg = rg;
 	}
 
 	public Long getId() {
@@ -97,8 +104,28 @@ public class Cliente {
 		this.nascimento = nascimento;
 	}
 
-	public List<Agendamento> getAgendamentos() {
-		return agendamentos;
+	public Barbearia getBarbearia() {
+		return barbearia;
+	}
+
+	public void setBarbearia(Barbearia barbearia) {
+		this.barbearia = barbearia;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
 	}
 	
 	//
@@ -116,17 +143,22 @@ public class Cliente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Proprietario other = (Proprietario) obj;
 		return Objects.equals(id, other.id);
 	}
+	
+	//
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email + ", senha="
-				+ senha + ", telefone=" + telefone + ", nascimento=" + nascimento + ", agendamentos=" + agendamentos
-				+ "]";
+		return "Proprietario [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email
+				+ ", senha=" + senha + ", telefone=" + telefone + ", nascimento=" + nascimento + ", barbearia="
+				+ barbearia + ", cpf=" + cpf + ", rg=" + rg + "]";
 	}
 	
-	//	
+	
+	
+	
+	
 	
 }

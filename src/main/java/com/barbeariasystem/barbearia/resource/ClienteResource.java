@@ -34,9 +34,12 @@ public class ClienteResource {
 	//
 	
 	private void updateData(Cliente entity, Cliente user) {
-		entity.setName(user.getName());
+		entity.setNome(user.getNome());
+		entity.setSobrenome(user.getSobrenome());
 		entity.setEmail(user.getEmail());
-		entity.setPhone(user.getPhone());
+		entity.setSenha(user.getSenha());
+		entity.setTelefone(user.getTelefone());
+		entity.setNascimento(user.getNascimento());
 		
 		
 	}
