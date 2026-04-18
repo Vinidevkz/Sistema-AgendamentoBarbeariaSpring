@@ -1,6 +1,7 @@
 package com.barbeariasystem.barbearia.resource;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +24,17 @@ public class ClienteResource {
 	@Autowired
 	private ClienteService service;
 	
+	@GetMapping
+	public ResponseEntity<List<Cliente>> findAll(){
+		List<Cliente> clientes = service.findAll();
+		return ResponseEntity.ok().body(clientes);
+	}
+	
 	
 	@PostMapping
 	public ResponseEntity<Cliente> create(@RequestBody Cliente cliente) {
-		cliente = service.create(cliente);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
+		cliente = service.insert(cliente);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId()).toUri();
 		
 		return ResponseEntity.created(uri).body(cliente);
 	}
@@ -39,27 +46,13 @@ public class ClienteResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public Cliente update(Long id, Cliente usuario) {
-		try {
-			Cliente entity = service.getReferenceById(id);
-			updateData(entity, usuario);
-			return service.save(entity);
-		}catch(RuntimeException e) {
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
+	public ResponseEntity<Cliente> update(@PathVariable Long id, @RequestBody Cliente cliente) {
+		cliente = service.update(id, cliente);
+		return ResponseEntity.ok().body(cliente);
+		
 	}
 	
 	//
 	
-	private void updateData(Cliente entity, Cliente user) {
-		entity.setNome(user.getNome());
-		entity.setSobrenome(user.getSobrenome());
-		entity.setEmail(user.getEmail());
-		entity.setSenha(user.getSenha());
-		entity.setTelefone(user.getTelefone());
-		entity.setNascimento(user.getNascimento());
-		
-		
-	}
+
 }

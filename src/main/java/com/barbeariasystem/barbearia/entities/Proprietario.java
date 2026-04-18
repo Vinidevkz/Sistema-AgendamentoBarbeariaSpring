@@ -24,6 +24,7 @@ public class Proprietario {
 	private String senha;
 	private String telefone;
 	private LocalDate nascimento;
+	
 	@OneToOne
 	@JoinColumn(name = "barbearia_id")
 	private Barbearia barbearia;

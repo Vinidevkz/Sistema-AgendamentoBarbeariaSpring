@@ -1,6 +1,5 @@
 package com.barbeariasystem.barbearia.entities;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,6 +26,8 @@ public class Cliente {
 	private String senha;
 	private String telefone;
 	private LocalDate nascimento;
+	
+	@OneToMany(mappedBy = "cliente")
 	private List<Agendamento> agendamentos = new ArrayList<>();
 	
 	public Cliente() {

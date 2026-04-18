@@ -22,6 +22,7 @@ public class Funcionario {
 	private String sobrenome;
 	private String email;
 	private String senha;
+	
 	@ManyToOne
 	@JoinColumn(name = "barbearia_id")
 	private Barbearia barbearia;
