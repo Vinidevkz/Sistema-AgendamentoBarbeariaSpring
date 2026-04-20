@@ -35,16 +35,14 @@ public class Proprietario {
 		
 	}
 
-	public Proprietario(Long id, String nome, String sobrenome, String email, String senha, String telefone,
-	LocalDate nascimento, Barbearia barbearia, String cpf, String rg) {
-		this.id = id;
+	public Proprietario(String nome, String sobrenome, String email, String senha, String telefone,
+	LocalDate nascimento, String cpf, String rg) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
 		this.senha = senha;
 		this.telefone = telefone;
 		this.nascimento = nascimento;
-		this.barbearia = barbearia;
 		this.cpf = cpf;
 		this.rg = rg;
 	}

@@ -35,9 +35,8 @@ public class Funcionario {
 		
 	}
 
-	public Funcionario(Long id, String nome, String sobrenome, String email, String senha, Barbearia barbearia,
+	public Funcionario(String nome, String sobrenome, String email, String senha, Barbearia barbearia,
 	String cpf, String rg, String telefone, LocalDate nascimento) {
-		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;

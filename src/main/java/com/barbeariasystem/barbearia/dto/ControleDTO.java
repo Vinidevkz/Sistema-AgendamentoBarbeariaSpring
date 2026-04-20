@@ -1,0 +1,40 @@
+package com.barbeariasystem.barbearia.dto;
+
+public class ControleDTO {
+    private Long id;
+    private String nome;
+    private boolean disponivel;
+
+    public ControleDTO(Long id, String nome, boolean disponivel) {
+        this.id = id;
+        this.nome = nome;
+        this.disponivel = disponivel;
+    }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public boolean isDisponivel() {
+		return disponivel;
+	}
+
+	public void setDisponivel(boolean disponivel) {
+		this.disponivel = disponivel;
+	}
+
+    // getters
+    
+}
